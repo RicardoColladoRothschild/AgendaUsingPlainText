@@ -9,7 +9,7 @@ public class TableViewer{
 	private Persona objectPersona;
 
 	
-	String[] columnNames = {"ID","Name","Age", "Phone"};
+	public String[] columnNames = {"ID","Name","Age", "Phone"};
 	/*
 	*This is TableViewer constructor, it will return the table to be located at the main screen of class main.
 	*@param person this is an object of type Persona, which should be receive to provide information for the person that
@@ -25,12 +25,14 @@ public class TableViewer{
 
 	/*
 	**/
-	public JTable tableObjectWithInformation(){
+	public String[][] tableObjectWithInformation(){
 
-		String[][] dataRetrieved = {{String.valueOf(objectPersona.getId()), objectPersona.getName(), String.valueOf(objectPersona.getAge()), objectPersona.getPhone()}};
-		JTable table = new JTable(dataRetrieved, columnNames);
+		String[][] dataRetrieved = {{String.valueOf(objectPersona.getId()), objectPersona.getName(), 
+			String.valueOf(objectPersona.getAge()), objectPersona.getPhone()}};
 
-		return table;
+		//JTable table = new JTable(dataRetrieved, columnNames);
+		//JOptionPane.showMessageDialog(null, "name: " + objectPersona.getName() + " ptn: " + objectPersona.getPhone());
+		return dataRetrieved;
 
 	}
 

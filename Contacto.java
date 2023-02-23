@@ -3,6 +3,9 @@ import javax.swing.JFrame;
 import java.awt.event.*;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JOptionPane;
 /*
 *@author ricardo vladimir collado rothschild
 */
@@ -21,18 +24,20 @@ private JTextField field_Age;
 private JTextField field_Id;
 private JTextField field_Phone;
 
+JTable tempty;
+JScrollPane test;
 
 private String name;
 private int age;
 private int id;
 private String phone;
 
-/*
- * Construtor for the Contacto class, this constructor will build the user interface, including buttons, field, and labels.
- * @author ricardo vladimir collado rothschild
- * 
- * 
-*/
+//original table:
+private JTable tble;
+private	JScrollPane pane;
+private Persona personObject;
+private TableViewer tv;
+private RetrieveInformation ri;
 	public Contacto(){
 
 
@@ -73,6 +78,8 @@ private String phone;
 					add(field_Phone);				
 
 
+
+
 			btn_saveInformation = new JButton("Save");
 				btn_saveInformation.setBounds(10,145,100,25);		
 					btn_saveInformation.addActionListener(e->{
@@ -88,10 +95,44 @@ private String phone;
 					});
 						add(btn_saveInformation);
 
-			btn_retrieveInformation = new JButton("Retrieve");
+
+
+						
+
+
+
+			btn_retrieveInformation = new JButton("Retrieve by id");
 				btn_retrieveInformation.setBounds(10,180,100,25);		
 					btn_retrieveInformation.addActionListener(e->{
 						
+						if(String.valueOf(field_Id.getText())==null){
+							JOptionPane.showMessageDialog(null, "Debe colocar informacion en la casilla de id, para buscar el dato");
+						}else{
+							id=Integer.valueOf(String.valueOf(field_Id.getText()));
+						
+
+						ri = new RetrieveInformation(id);
+
+
+						personObject = ri.retrieveData();
+						tv = new TableViewer(personObject);
+						String[][] infoarra = new String[2][3];
+						String[] columnNames = {"ID","Name","Age", "Phone"};
+						tble = new JTable(infoarra,tv.columnNames);
+						tble.setBounds(45,189,150,150);
+						pane = new JScrollPane(tble);
+						
+
+						add(tble);
+						//test
+						
+    	//tst
+						
+						System.out.println("this line was executed");
+						}
+						
+
+
 					});
 						add(btn_retrieveInformation);			
 

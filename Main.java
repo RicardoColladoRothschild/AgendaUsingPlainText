@@ -6,7 +6,7 @@ public class Main{
 	public static void main(String[] args){
 
 		Contacto con = new Contacto();
-		con.setBounds(0,0,450,450);
+		con.setBounds(0,0,785,785);
 		con.setResizable(false);
 		con.setLocationRelativeTo(null);
 		con.setVisible(true);

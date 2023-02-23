@@ -9,7 +9,7 @@ import java.io.IOException;
 **/
 public class SaveInformationProcess{
 	
-	private String root = "./data/";
+	private String root = ".//data//";
 	private BufferedWriter bw;
 	private FileWriter fw;
 	private File file;
@@ -28,7 +28,7 @@ public class SaveInformationProcess{
 	private void sendInfo(){
 
 		try{
-			root = root+String.valueOf(personaObject.getId()+".txt");
+			root +=String.valueOf(personaObject.getId()+".txt");
 			File file = new File(root);
 
 			if(!file.exists()){
