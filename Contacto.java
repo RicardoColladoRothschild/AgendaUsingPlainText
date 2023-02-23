@@ -36,7 +36,7 @@ private String phone;
 private JTable tble;
 private	JScrollPane pane;
 private Persona personObject;
-private TableViewer tv;
+private TableViewer tableView;
 private RetrieveInformation ri;
 	public Contacto(){
 
@@ -104,28 +104,25 @@ private RetrieveInformation ri;
 			btn_retrieveInformation = new JButton("Retrieve by id");
 				btn_retrieveInformation.setBounds(10,180,100,25);		
 					btn_retrieveInformation.addActionListener(e->{
-						
+						//VERIFY IF THE FIELD ID IS EMPTY
 						if(String.valueOf(field_Id.getText())==null){
 							JOptionPane.showMessageDialog(null, "Debe colocar informacion en la casilla de id, para buscar el dato");
 						}else{
+							//Obtain id value, to be use to look for information
 							id=Integer.valueOf(String.valueOf(field_Id.getText()));
 						
-
+							//ri retrieve information, providing id number. 
 						ri = new RetrieveInformation(id);
 
 
 						personObject = ri.retrieveData();
-						tv = new TableViewer(personObject);
-						String[][] infoarra = new String[2][3];
-						String[] columnNames = {"ID","Name","Age", "Phone"};
-						tble = new JTable(infoarra,tv.columnNames);
-						tble.setBounds(45,189,150,150);
-						pane = new JScrollPane(tble);
+						tableView = new TableViewer(personObject);
+						ShowData sd = new ShowData(tableView.tableObjectWithInformation());
+						sd.setVisible(true);
+						
 						
 
 						add(tble);
-						//test
-						
     	//tst
 						
 						System.out.println("this line was executed");
